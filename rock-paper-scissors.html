@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<body>
+    <script>
+        
+        function rockPaperScissors(){
+            let wins = 0;
+            let loses = 0;
+            let draws = 0;
+
+            for (let round = 0; round<5; round++){
+                let result = playRound(prompt("Choose rock, paper or scissors"), computerPlay());
+                if (result == "win"){
+                    wins++;
+                }
+                else if (result == "draw"){
+                    draws++;
+                }
+                else if (result == "lose") {
+                    loses++;
+                }
+            }
+            console.log("You won ${win} times, lost ${lose} and got a draw ${draw} times.");
+        }
+
+        function playRound(playerSelection, computerSelection){
+            playerSelection = playerSelection.toLowerCase();
+            if (winCheck(playerSelection, computerSelection)){
+                console.log("Win! Your ${player} beats computer's ${computer}!");
+                return "win";
+            }
+            else if (drawCheck(playerSelection, computerSelection)){
+                console.log("Draw! Your ${player} is same with computer's ${computer}!");
+                return "draw";
+            }
+            else {
+                console.log("Lose! Your ${player} got beaten by computer's ${computer}!");
+                return "lose";
+            }
+        }
+
+        function winCheck(playerSelection, computerSelection){
+            let win = true;
+            let lose = false;
+            if (playerSelection == "rock"){
+                if (computerSelection == "rock"){
+                    return win;
+                }
+                else if (computerSelection == "paper"){
+                    return lose;
+                }
+                else if (computerSelection == "scissors"){
+                    return lose;
+                }
+            }
+            else if (playerSelection == "paper"){
+                if (computerSelection == "rock"){
+                    return lose;
+                }
+                else if (computerSelection == "paper"){
+                    return win;
+                }
+                else if (computerSelection == "scissors"){
+                    return lose;
+                }
+            }
+            else if (playerSelection == "scissors"){
+                if (computerSelection == "rock"){
+                    return lose;
+                }
+                else if (computerSelection == "paper"){
+                    return lose;
+                }
+                else if (computerSelection == "scissors"){
+                    return win;
+                }
+            }
+        }
+
+        function drawCheck(playerSelection, computerSelection){
+            if (playerSelection == computerSelection){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        function computerPlay(){    
+            let computerChoise = ["rock","paper","scissor"];
+            return computerChoise[Math.floor((Math.random() * 3))];
+        }
+
+    </script>
+</body>
